@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %><%= category.name%></h1>
+    
+    <form action="/car/create" method="POST">
+      <h2>add a car to category</h2>
+      <label for="name">Car name:</label>
+      <input type="text" name="name" id="name">
+      <label for="numbers">Available cars:</label>
+      <input type="number" name="numbers" id="numbers">
+      <label for="category">category</label>
+      <input type="hidden" name="category" value="<%= category._id%>">
+      <button type="submit">add car</button>
+    </form>
+
+    <div>
+      <% if (cars.length > 0) { %>
+        <ul>
+          <% cars.forEach(car => { %>
+            <li>
+              <form action="/category/<%= category._id%>" method="DELETE">
+              <a class="links" href="/category/<%= category._id%>"><%= car.name %></a>
+              </form>
+          </li>
+          <% }) %>
+        </ul>
+      <% } else { %>
+        <p>There are no car to display...</p>
+      <% } %>
+    </div>
+  </body>
+</html>

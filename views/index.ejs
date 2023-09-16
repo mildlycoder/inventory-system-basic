@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+
+    <% if (categories.length > 0) { %>
+      <ul>
+        <% categories.forEach(category => { %>
+          <li>
+            <form action="/category/<%= category._id%>" method="DELETE">
+            <a class="links" href="/category/<%= category._id%>"><%= category.name %></a>
+            </form>
+        </li>
+        <% }) %>
+      </ul>
+    <% } else { %>
+      <p>There are no category to display...</p>
+    <% } %>
+
+    <div>
+      <form action="/category/create" method="POST">
+        <label for="name">Category name</label>
+        <input type="text" name="name" id="name">
+        <button type="submit">add category</button>
+      </form>
+    </div>
+  </body>
+</html>
